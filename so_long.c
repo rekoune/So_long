@@ -11,10 +11,10 @@ int main(int ac, char **av)
 	{
 		map = check_map(av[1], &head);
 	}
-	while (*map)
-	{
-		printf("%s", *map);
-		map++;
-	}
-	 system("leaks so_long");
+	// while (*map)
+	// {
+	// 	printf("%s", *map);
+	// 	map++;
+	// }
+	system("leaks so_long");
 }

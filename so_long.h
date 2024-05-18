@@ -28,7 +28,7 @@ typedef struct s_num
 //check_map.c
 void	get_map_lines(int fd, t_map **head);
 char	**check_map(char *str, t_map **head);
-void	check_elements(t_map **head);
+void	check_elements(t_map **head, t_num *num);
 void	elements_calcul(char *str, t_num *num);
 
 //utils.c
