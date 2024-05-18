@@ -7,7 +7,7 @@ NAME = so_long
 
 all : $(NAME)
 
-$(NAME) : $(OFILES)
+$(NAME) : $(OFILES) so_long.h
 		$(CC) $(CFLAGS) $(OFILES) -o $(NAME)
 %.o : %.c
 	$(CC) $(CFLAGS) -c $<  -o $@

@@ -18,13 +18,16 @@ typedef struct s_num
 	int	p;
 	int	e;
 	int c;
+	int	p_x;
+	int	p_y;
+	int	nf;
 }t_num;
 
 //so_long.c
 
 //check_map.c
 void	get_map_lines(int fd, t_map **head);
-void	check_map(char *str, t_map **head);
+char	**check_map(char *str, t_map **head);
 void	check_elements(t_map **head);
 void	elements_calcul(char *str, t_num *num);
 
