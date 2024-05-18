@@ -131,7 +131,13 @@ void	free_list(t_map **head)
 	t_map *node;
 
 	node = *head;
-	
+	while (*head)
+	{
+		node = (*head)->next;
+		free(*head); 
+		*head = node;
+	}
+	head = NULL;
 }
 
 char	**check_map(char *str, t_map **head)
@@ -148,5 +154,6 @@ char	**check_map(char *str, t_map **head)
 	check_elements(head);
 	check_walls(head);
 	map = switch_to_array(head);
+	free_list(head);
 	return(map);
 }

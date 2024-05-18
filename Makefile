@@ -1,7 +1,7 @@
 CFILES = so_long.c check_map.c utils.c get_next_line.c get_next_line_utils.c
 OFILES = $(CFILES:.c=.o)
 CC = cc 
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g
+CFLAGS = -Wall -Wextra -Werror 
 
 NAME = so_long 
 
