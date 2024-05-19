@@ -6,7 +6,7 @@
 /*   By: arekoune <arekoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 11:09:56 by arekoune          #+#    #+#             */
-/*   Updated: 2024/05/19 11:17:20 by arekoune         ###   ########.fr       */
+/*   Updated: 2024/05/19 19:52:44 by arekoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,13 +66,14 @@ void	check_elements(t_map **head, t_num *num)
 		error("Invalid map\n");
 }
 
-void	get_map_lines(int fd, t_map **head)
+void	get_map_lines(int fd, t_map **head, t_num *num)
 {
 	t_map	*node;
 	int		size;
 
 	node = new_node(get_next_line(fd));
 	size = str_len_c(node->line, '\n');
+	num->n_char = size;
 	while (node->line)
 	{
 		add_back(head, node);
@@ -106,26 +107,28 @@ void	check_walls(t_map **head)
 			error("Invalid map\n");
 }
 
-char	**check_map(char *str, t_map **head)
+char	**check_map(char *str, t_num *num)
 {
 	int		fd;
 	char	**map;
 	char	**map_copy;
-	t_num	num;
+	t_map	*head;
 
+	head = NULL;
 	if (compare(str + (str_len_c(str, '\0') - 4), ".ber") != 0)
 		error("Map file format not corect\n");
 	fd = open(str, O_RDWR);
 	if (fd == -1)
 		error("Map file not exist\n");
-	get_map_lines(fd, head);
-	check_elements(head, &num);
-	check_walls(head);
-	map = switch_to_array(head);
-	map_copy = copying_map(*head);
-	flood_fill(map_copy, num.p_x, num.p_y, list_size(*head));
+	get_map_lines(fd, &head, num);
+	num->n_line = list_size(head);
+	check_elements(&head, num);
+	check_walls(&head);
+	map = switch_to_array(&head);
+	map_copy = copying_map(head);
+	flood_fill(map_copy, num->p_x, num->p_y, list_size(head));
 	check_path(map_copy);
 	free_2d(map_copy);
-	free_list(head);
+	free_list(&head);
 	return (map);
 }
