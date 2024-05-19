@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: arekoune <arekoune@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/19 11:10:21 by arekoune          #+#    #+#             */
+/*   Updated: 2024/05/19 11:10:22 by arekoune         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 int	str_len_c(char *str, char c)
@@ -10,26 +22,38 @@ int	str_len_c(char *str, char c)
 	return (i);
 }
 
-int	compare(char *s1, char *s2)
+char	*sub_str(char *str, int len)
 {
-	int	i;
+	int		i;
+	char	*s;
 
 	i = 0;
-	while (s1[i] && s2[i])
+	s = malloc((len + 1) * sizeof(char));
+	while (i < len)
 	{
-		if (s1[i] != s2[i])
-			return (s1[i] - s2[i]);
+		s[i] = str[i];
 		i++;
 	}
-	return (s1[i] - s2[i]);
+	s[i] = '\0';
+	return (s);
 }
 
-void ft_write(char *str, int fd)
+void	free_2d(char **str)
 {
 	int	i;
 
 	i = 0;
-	while(str[i])
+	while (str[i])
+		free(str[i++]);
+	free(str);
+}
+
+void	ft_write(char *str, int fd)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
 		write(fd, &str[i++], 1);
 }
 
@@ -38,29 +62,4 @@ void	error(char *str)
 	ft_write("Error\n", 2);
 	ft_write(str, 2);
 	exit(1);
-}
-
-t_map	*new_node(char *content)
-{
-	t_map	*node;
-
-	node = malloc(sizeof(t_map));
-	node->line = content;
-	node->next = NULL;
-	return(node);
-}
-
-void	add_back(t_map **head, t_map *new)
-{
-	t_map *node;
-
-	node = *head;
-	if (!(*head))
-		*head = new;
-	else
-	{
-		while (node->next)
-			node = node->next;
-		node->next = new;
-	}
 }
