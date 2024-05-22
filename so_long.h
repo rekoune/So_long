@@ -6,7 +6,7 @@
 /*   By: arekoune <arekoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 11:10:18 by arekoune          #+#    #+#             */
-/*   Updated: 2024/05/19 19:53:12 by arekoune         ###   ########.fr       */
+/*   Updated: 2024/05/21 15:38:38 by arekoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ typedef struct s_num
 }			t_num;
 
 // so_long.c
-
-// check_map.c
+ 
+// check_map.c    
 void		get_map_lines(int fd, t_map **head, t_num *num);
 char		**check_map(char *str, t_num *num);
 void		check_elements(t_map **head, t_num *num);
