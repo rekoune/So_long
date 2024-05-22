@@ -6,11 +6,13 @@
 /*   By: arekoune <arekoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 11:09:46 by arekoune          #+#    #+#             */
-/*   Updated: 2024/05/21 15:56:21 by arekoune         ###   ########.fr       */
+/*   Updated: 2024/05/22 11:02:43 by arekoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+
 
 int	main(int ac, char **av)
 {
@@ -20,6 +22,7 @@ int	main(int ac, char **av)
 	int		i = 0;
 	int		j;
 	mlx_texture_t *texture;
+	mlx_image_t *img;
 
 	map = NULL;
 	if (ac == 2)
@@ -32,35 +35,19 @@ int	main(int ac, char **av)
 			while (j < num.n_char)
 			{
 				if (map[i][j] == '1')
-				{
 					texture=  mlx_load_png("img/ground.png");
-					mlx_image_t *img = mlx_texture_to_image(mlx, texture);
-					mlx_image_to_window(mlx, img,  (j * 90), (i * 90));
-				}
-				else if (map[i][j] == '0' || map[i][j] =='C' || map[i][j] == 'E'|| map[i][j] == 'P')
-				{
+				else 
 					texture=  mlx_load_png("img/ocean.png");
-					mlx_image_t *img = mlx_texture_to_image(mlx, texture);
-					mlx_image_to_window(mlx, img,  (j * 90), (i * 90));
-				}
+				img = mlx_texture_to_image(mlx, texture);
+				mlx_image_to_window(mlx, img,  (j * 90), (i * 90));
 				if (map[i][j] == 'P')
-				{
 					texture=  mlx_load_png("img/player.png");
-					mlx_image_t *img = mlx_texture_to_image(mlx, texture);
-					mlx_image_to_window(mlx, img,  (j * 90), (i * 90));
-				}
 				else if (map[i][j] == 'E')
-				{
 					texture=  mlx_load_png("img/door_open.png");
-					mlx_image_t *img = mlx_texture_to_image(mlx, texture);
-					mlx_image_to_window(mlx, img,  (j * 90), (i * 90));
-				}
 				else if (map[i][j] == 'C')
-				{
 					texture=  mlx_load_png("img/coins.png");
-					mlx_image_t *img = mlx_texture_to_image(mlx, texture);
-					mlx_image_to_window(mlx, img,  (j * 90), (i * 90));
-				}
+				img = mlx_texture_to_image(mlx, texture);
+				mlx_image_to_window(mlx, img,  (j * 90), (i * 90));
 				j++;
 			}
 			i++;
