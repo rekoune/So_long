@@ -6,7 +6,7 @@
 /*   By: arekoune <arekoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 17:19:22 by arekoune          #+#    #+#             */
-/*   Updated: 2024/05/24 20:18:41 by arekoune         ###   ########.fr       */
+/*   Updated: 2024/05/24 20:24:36 by arekoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,10 @@ void	move_up(t_num *num, int a)
 			* 75);
 	else
 		mlx_image_to_window(num->mlx, num->up, num->p_x * 75, num->p_y * 75);
+		num->moves++;
+	ft_write("moves = ", 1);
+	ft_write(print_digit(num->moves), 1);
+	ft_write("\n", 1);
 }
 
 void	move_down(t_num *num, int a)
@@ -37,6 +41,10 @@ void	move_down(t_num *num, int a)
 	else
 		mlx_image_to_window(num->mlx, num->player, num->p_x * 75, num->p_y
 			* 75);
+			num->moves++;
+	ft_write("moves = ", 1);
+	ft_write(print_digit(num->moves), 1);
+	ft_write("\n", 1);
 }
 
 void	 move_right(t_num *num, int a)
@@ -53,6 +61,10 @@ void	 move_right(t_num *num, int a)
 		mlx_image_to_window(num->mlx, num->exit, num->p_x * 75, num->p_y * 75);
 	num->p_x++;
 	mlx_image_to_window(num->mlx, num->walk, num->p_x * 75, num->p_y * 75);
+	num->moves++;
+	ft_write("moves = ", 1);
+	ft_write(print_digit(num->moves), 1);
+	ft_write("\n", 1);
 	(void)a;
 }
 
@@ -70,6 +82,10 @@ void	move_lift(t_num *num, int a)
 		mlx_image_to_window(num->mlx, num->exit, num->p_x * 75, num->p_y * 75);
 	num->p_x--;
 	mlx_image_to_window(num->mlx, num->left, num->p_x * 75, num->p_y * 75);
+	num->moves++;
+	ft_write("moves = ", 1);
+	ft_write(print_digit(num->moves), 1);
+	ft_write("\n", 1);
 	(void)a;
 }
 

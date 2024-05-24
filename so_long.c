@@ -6,7 +6,7 @@
 /*   By: arekoune <arekoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 11:09:46 by arekoune          #+#    #+#             */
-/*   Updated: 2024/05/24 20:14:17 by arekoune         ###   ########.fr       */
+/*   Updated: 2024/05/24 20:20:58 by arekoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ int	main(int ac, char **av)
 	char	**map;
 
 	map = NULL;
+	num.moves = 0;
 	if (ac == 2)
 	{
 		map = check_map(av[1], &num);
