@@ -6,7 +6,7 @@
 /*   By: arekoune <arekoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 11:09:52 by arekoune          #+#    #+#             */
-/*   Updated: 2024/05/19 11:16:52 by arekoune         ###   ########.fr       */
+/*   Updated: 2024/05/24 17:13:32 by arekoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,28 @@ void	check_path(char **map)
 		{
 			if (map[i][j] == 'E' || map[i][j] == 'C')
 				error("Invalid map\n");
+			j++;
+		}
+		i++;
+	}
+}
+
+void	position(t_num *map)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (map->map[i])
+	{
+		j = 0;
+		while (map->map[i][j] && map->map[i][j] != '\n')
+		{
+			if (map->map[i][j] == 'E')
+			{
+				map->e_x = j;
+				map->e_y = i;
+			}
 			j++;
 		}
 		i++;

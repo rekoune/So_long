@@ -1,4 +1,4 @@
-CFILES = so_long.c check_map.c check_map_utils.c list_utils.c utils.c move_player.c get_next_line.c get_next_line_utils.c
+CFILES = so_long.c check_map.c check_map_utils.c list_utils.c utils.c move_player.c move_player_utils.c get_next_line.c get_next_line_utils.c
 OFILES = $(CFILES:.c=.o)
 CC = cc 
 CFLAGS = -Wall -Wextra -Werror -Wunreachable-code -Ofast
