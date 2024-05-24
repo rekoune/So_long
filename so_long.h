@@ -6,7 +6,7 @@
 /*   By: arekoune <arekoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 11:10:18 by arekoune          #+#    #+#             */
-/*   Updated: 2024/05/21 15:38:38 by arekoune         ###   ########.fr       */
+/*   Updated: 2024/05/24 11:46:00 by arekoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,27 @@ typedef struct s_num
 	int		c;
 	int		p_x;
 	int		p_y;
+	int		e_x;
+	int		e_y;
 	int		nf;
 	int		n_line;
 	int		n_char;
+	char	**map;
+	void	*mlx;
+	mlx_image_t *player;
+	mlx_image_t *coins;
+	mlx_image_t *ocean;
+	mlx_image_t *exit;
+	mlx_image_t *ground;
+	mlx_image_t *door_open;
+	mlx_image_t *hunt;
+	mlx_image_t *left;
+	mlx_image_t *left_hunt;
+	mlx_image_t *walking;
+	mlx_image_t *up;
+	mlx_image_t *up_left;
+	mlx_image_t *player_left;
+	
 }			t_num;
 
 // so_long.c
@@ -66,5 +84,11 @@ void		free_2d(char **str);
 void		error(char *str);
 void		ft_write(char *str, int fd);
 int			str_len_c(char *str, char c);
+
+//move_player.c
+void	move_up(t_num *num, int a);
+void	move_down(t_num *num, int a);
+void	move_right(t_num *num, int a);
+void	move_lift(t_num *num, int a);
 
 #endif
