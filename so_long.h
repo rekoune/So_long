@@ -6,7 +6,7 @@
 /*   By: arekoune <arekoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 11:10:18 by arekoune          #+#    #+#             */
-/*   Updated: 2024/05/24 20:07:59 by arekoune         ###   ########.fr       */
+/*   Updated: 2024/05/25 10:56:36 by arekoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ typedef struct s_num
 }				t_num;
 
 // so_long.c
-mlx_image_t		*get_image(char *path, void *mlx);
+mlx_image_t		*get_image(char *path, void *mlx, char **map);
 void			get_pointers(t_num *num);
 void			draw_the_map(char **map, void *mlx, t_num *num);
 void			my_key_hok(mlx_key_data_t data, void *param);
@@ -67,7 +67,7 @@ void			my_key_hok(mlx_key_data_t data, void *param);
 void			get_map_lines(int fd, t_map **head, t_num *num);
 char			**check_map(char *str, t_num *num);
 void			check_elements(t_map **head, t_num *num);
-void			elements_calcul(char *str, t_num *num);
+int				elements_calcul(char *str, t_num *num);
 void			check_walls(t_map **head);
 
 // check_map_utils.c
@@ -82,12 +82,12 @@ int				compare(char *s1, char *s2);
 t_map			*new_node(char *content);
 void			add_back(t_map **head, t_map *new);
 int				list_size(t_map *head);
-void			free_list(t_map **head);
+void			free_list(t_map **head, char c);
 
 // utils.c
 char			*sub_str(char *str, int len);
 void			free_2d(char **str);
-void			error(char *str);
+void			error(char *str, t_map **head, char **map);
 void			ft_write(char *str, int fd);
 int				str_len_c(char *str, char c);
 
@@ -98,9 +98,8 @@ void			move_right(t_num *num, int a);
 void			move_lift(t_num *num, int a);
 void			move_player(t_num *num, char c, int a);
 
-//move_player_utils.c
+// move_player_utils.c
 void			eat_coin(t_num *num, int a);
 char			*print_digit(long nb);
-
 
 #endif

@@ -26,7 +26,7 @@ void	eat_coin(t_num *num, int a)
 char	*print_digit(long nb)
 {
 	char	str[12];
-	char 	*s;
+	char	*s;
 	int		i;
 	int		j;
 

@@ -6,7 +6,7 @@
 /*   By: arekoune <arekoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 11:10:21 by arekoune          #+#    #+#             */
-/*   Updated: 2024/05/19 11:10:22 by arekoune         ###   ########.fr       */
+/*   Updated: 2024/05/25 12:02:07 by arekoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,13 @@ void	ft_write(char *str, int fd)
 		write(fd, &str[i++], 1);
 }
 
-void	error(char *str)
+void	error(char *str, t_map **head, char **map)
 {
-	ft_write("Error\n", 2);
+	if (head)
+		free_list(head, 'r');
+	else if (map)
+		free_2d(map);
+	ft_write("Error : ", 2);
 	ft_write(str, 2);
 	exit(1);
 }

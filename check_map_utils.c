@@ -6,7 +6,7 @@
 /*   By: arekoune <arekoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 11:09:52 by arekoune          #+#    #+#             */
-/*   Updated: 2024/05/24 17:13:32 by arekoune         ###   ########.fr       */
+/*   Updated: 2024/05/25 10:50:03 by arekoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	check_path(char **map)
 		while (map[i][j] && j < str_len_c(map[i], '\n'))
 		{
 			if (map[i][j] == 'E' || map[i][j] == 'C')
-				error("Invalid map\n");
+				error("Invalid map\n", NULL, map);
 			j++;
 		}
 		i++;

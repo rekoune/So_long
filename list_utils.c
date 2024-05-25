@@ -6,7 +6,7 @@
 /*   By: arekoune <arekoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 11:10:08 by arekoune          #+#    #+#             */
-/*   Updated: 2024/05/19 11:10:09 by arekoune         ###   ########.fr       */
+/*   Updated: 2024/05/25 10:26:58 by arekoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	list_size(t_map *head)
 	return (i);
 }
 
-void	free_list(t_map **head)
+void	free_list(t_map **head, char c)
 {
 	t_map	*node;
 
@@ -72,6 +72,8 @@ void	free_list(t_map **head)
 	while (*head)
 	{
 		node = (*head)->next;
+		if (c == 'r')
+			free((*head)->line);
 		free(*head);
 		*head = node;
 	}
