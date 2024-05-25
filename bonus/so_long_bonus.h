@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arekoune <arekoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/19 11:10:18 by arekoune          #+#    #+#             */
-/*   Updated: 2024/05/25 15:10:35 by arekoune         ###   ########.fr       */
+/*   Created: 2024/05/25 14:21:37 by arekoune          #+#    #+#             */
+/*   Updated: 2024/05/25 20:40:12 by arekoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef SO_LONG_BONUS_H
+# define SO_LONG_BONUS_H
 
+//
+# include <stdio.h>
+//
 # include "/Users/arekoune/MLX42/include/MLX42/MLX42.h"
-# include "get_next_line.h"
+# include "get_next_line_bonus.h"
 # include <fcntl.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -53,6 +56,20 @@ typedef struct s_num
 	mlx_image_t	*up;
 	mlx_image_t	*up_left;
 	mlx_image_t	*player_left;
+
+	mlx_image_t *anime1;
+	mlx_image_t *anime2;
+	mlx_image_t *anime3;
+	mlx_image_t *anime4;
+	mlx_image_t *anime5;
+	mlx_image_t *anime6;
+	mlx_image_t *anime7;
+	mlx_image_t *anime8;
+	
+	mlx_image_t *enemy0;
+	mlx_image_t *enemy1;
+	
+	int			hona;
 
 }				t_num;
 
