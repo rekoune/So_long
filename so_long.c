@@ -6,7 +6,7 @@
 /*   By: arekoune <arekoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 11:09:46 by arekoune          #+#    #+#             */
-/*   Updated: 2024/05/25 12:19:56 by arekoune         ###   ########.fr       */
+/*   Updated: 2024/05/25 12:59:41 by arekoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ void	get_pointers(t_num *num)
 	num->ocean = get_image("textures/ocean.png", num->mlx, num->map);
 	num->ground = get_image("textures/ground.png", num->mlx, num->map);
 	num->player = get_image("textures/player.png", num->mlx, num->map);
-	num->player_left = get_image("textures/player_left.png", num->mlx, num->map);
+	num->player_left = get_image("textures/player_left.png", num->mlx,
+			num->map);
 	num->walk = get_image("textures/walking.png", num->mlx, num->map);
 	num->left = get_image("textures/left.png", num->mlx, num->map);
 	num->hunt = get_image("textures/hunt.png", num->mlx, num->map);
@@ -100,18 +101,12 @@ void	my_key_hok(mlx_key_data_t data, void *param)
 	}
 }
 
-void	leaks(void)
-{
-	system("leaks so_long -q");
-}
-
 int	main(int ac, char **av)
 {
 	t_num	num;
 	void	*mlx;
 	char	**map;
 
-	atexit(leaks);
 	map = NULL;
 	num.moves = 0;
 	if (ac == 2)

@@ -6,7 +6,7 @@
 /*   By: arekoune <arekoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 17:19:22 by arekoune          #+#    #+#             */
-/*   Updated: 2024/05/25 12:34:36 by arekoune         ###   ########.fr       */
+/*   Updated: 2024/05/25 13:01:37 by arekoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ void	move_down(t_num *num, int a)
 	if (num->map[num->p_y][num->p_x] != 'E')
 	{
 		mlx_image_to_window(num->mlx, num->ocean, num->p_x * 75, num->p_y * 75);
-		mlx_image_to_window(num->mlx, num->player, num->p_x * 75, num->p_y * 75);
+		mlx_image_to_window(num->mlx, num->player, num->p_x * 75, num->p_y
+			* 75);
 	}
 	if (num->map[num->p_y + 1][num->p_x] == '1')
 		return ;
@@ -61,8 +62,7 @@ void	move_down(t_num *num, int a)
 	else
 		mlx_image_to_window(num->mlx, num->player, num->p_x * 75, num->p_y
 			* 75);
-	num->moves++;
-	str = print_digit(num->moves);
+	str = print_digit(++num->moves);
 	ft_write("moves = ", 1);
 	ft_write(str, 1);
 	ft_write("\n", 1);
