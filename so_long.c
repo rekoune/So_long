@@ -6,13 +6,13 @@
 /*   By: arekoune <arekoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 11:09:46 by arekoune          #+#    #+#             */
-/*   Updated: 2024/05/25 12:59:41 by arekoune         ###   ########.fr       */
+/*   Updated: 2024/05/25 13:17:21 by arekoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-mlx_image_t	*get_image(char *path, void *mlx, char **map)
+mlx_image_t	*get_image(char *path, mlx_t *mlx, char **map)
 {
 	mlx_texture_t	*texture;
 	mlx_image_t		*img;
@@ -45,7 +45,7 @@ void	get_pointers(t_num *num)
 	num->exit = get_image("textures/exit.png", num->mlx, num->map);
 }
 
-void	draw_the_map(char **map, void *mlx, t_num *num)
+void	draw_the_map(char **map, mlx_t *mlx, t_num *num)
 {
 	int	i;
 	int	j;
@@ -104,7 +104,7 @@ void	my_key_hok(mlx_key_data_t data, void *param)
 int	main(int ac, char **av)
 {
 	t_num	num;
-	void	*mlx;
+	mlx_t	*mlx;
 	char	**map;
 
 	map = NULL;

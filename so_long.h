@@ -6,7 +6,7 @@
 /*   By: arekoune <arekoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 11:10:18 by arekoune          #+#    #+#             */
-/*   Updated: 2024/05/25 10:56:36 by arekoune         ###   ########.fr       */
+/*   Updated: 2024/05/25 13:17:56 by arekoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ typedef struct s_num
 	int			n_line;
 	int			n_char;
 	char		**map;
-	void		*mlx;
+	mlx_t		*mlx;
 	int			moves;
 	mlx_image_t	*player;
 	mlx_image_t	*coins;
@@ -58,9 +58,9 @@ typedef struct s_num
 }				t_num;
 
 // so_long.c
-mlx_image_t		*get_image(char *path, void *mlx, char **map);
+mlx_image_t		*get_image(char *path, mlx_t *mlx, char **map);
 void			get_pointers(t_num *num);
-void			draw_the_map(char **map, void *mlx, t_num *num);
+void			draw_the_map(char **map, mlx_t *mlx, t_num *num);
 void			my_key_hok(mlx_key_data_t data, void *param);
 
 // check_map.c
