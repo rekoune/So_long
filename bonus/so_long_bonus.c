@@ -6,7 +6,7 @@
 /*   By: arekoune <arekoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 11:09:46 by arekoune          #+#    #+#             */
-/*   Updated: 2024/05/25 20:42:24 by arekoune         ###   ########.fr       */
+/*   Updated: 2024/05/26 17:44:25 by arekoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,14 @@ void	get_pointers(t_num *num)
 	num->anime8 = get_image("textures_bonus/anime8.png", num->mlx, num->map);
 
 	
-	num->enemy0 = get_image("textures_bonus/enemy0.png", num->mlx, num->map);
 	num->enemy1 = get_image("textures_bonus/enemy1.png", num->mlx, num->map);
+	num->enemy2 = get_image("textures_bonus/enemy2.png", num->mlx, num->map);
+	num->enemy3= get_image("textures_bonus/enemy3.png", num->mlx, num->map);
+	num->enemy4 = get_image("textures_bonus/enemy4.png", num->mlx, num->map);
+	num->enemy5 = get_image("textures_bonus/enemy5.png", num->mlx, num->map);
+	num->enemy6 = get_image("textures_bonus/enemy6.png", num->mlx, num->map);
+	num->enemy7 = get_image("textures_bonus/enemy7.png", num->mlx, num->map);
+	num->enemy8 = get_image("textures_bonus/enemy8.png", num->mlx, num->map);
 
 }
 
@@ -79,8 +85,6 @@ void	draw_the_map(char **map, mlx_t *mlx, t_num *num)
 				mlx_image_to_window(mlx, num->ground, j * 75, i * 75);
 			else
 				mlx_image_to_window(mlx, num->ocean, j * 75, i * 75);
-			// if (map[i][j] == 'C')
-			// 	mlx_image_to_window(num->mlx, num->coins, j * 75, i * 75);
 			 if (map[i][j] == 'E')
 				mlx_image_to_window(num->mlx, num->exit, j * 75, i * 75);
 			j++;
@@ -96,6 +100,7 @@ void	my_key_hok(mlx_key_data_t data, void *param)
 	static int	a;
 
 	num = (t_num *)param;
+	
 	if ((data.key == MLX_KEY_W || data.key == MLX_KEY_UP) && data.action)
 		move_player(num, 'W', a);
 	else if ((data.key == MLX_KEY_A || data.key == MLX_KEY_LEFT) && data.action)
@@ -145,23 +150,23 @@ mlx_image_t	*get_enemy_anime(t_num *num)
 {
 	mlx_image_t *img;
 	
-	img = num->enemy0;
+	img = num->enemy1;
 	if (num->hona == 10)
-		img = num->enemy0;
+		img = num->enemy1;
 	if (num->hona == 20)
-		img = num->enemy1;
+		img = num->enemy2;
 	if (num->hona == 30)
-		img = num->enemy0;
+		img = num->enemy3;
 	if (num->hona == 40)
-		img = num->enemy1;
+		img = num->enemy4;
 	if (num->hona == 50)
-		img = num->enemy0;
+		img = num->enemy5;
 	if (num->hona == 60)
-		img = num->enemy1;
+		img = num->enemy6;
 	if (num->hona == 70)
-		img = num->enemy0;
+		img = num->enemy7;
 	if (num->hona == 80)
-		img = num->enemy1;
+		img = num->enemy8;
 	return(img);
 }
 
@@ -182,31 +187,59 @@ void	 fun(void *param)
 	t_num 		*num;
 	int		i;
 	int		j;
+	int c;
+	int d;
 
 	num = param;
 	num->hona++;
+	c = 0;
+	d = 0;
 	i = 0;
 	num = param;
 	if( num->hona == 10 || num->hona == 20 || num->hona == 30
 		|| num->hona == 40 || num->hona == 50 || num->hona == 60
 		|| num->hona == 70 || num->hona == 80)
 	{
+		
 		while (num->map[i] )
 		{
 			j = 0;
 			while (num->map[i][j])
 			{
+				if (d == num->p_x && c - 1 == num->p_y)
+					exit(0);
 				if (num->map[i][j] == 'C')
 					print_anime(num, i, j, 'C');
 				else if (num->map[i][j] == 'A')
-					print_anime(num, i, j, 'A');
+				{	
+					if (i - 1 >= 0 && num->map[i - 1][j] == '1')
+						print_anime(num, i, j, 'A');
+					if (i - 1 > 0 && num->map[i - 1][j] != '1')
+					{
+						 if (num->hona == 80 )
+						 {
+							if(num->map[i - 1][j] == 'C')
+								 num->map[i - 2][j] = 'A';
+							else
+								num->map[i - 1][j] = 'A';
+						num->map[i][j] = '0';
+						 }
+						print_anime(num, i - 1 , j, 'A');
+						c = i;
+						d = j;
+						
+					}
+				}
 				j++;	
 			}
 			i++;
 		}
 	}
-	if (num->hona == 85)
+	if (num->hona == 80)
+	{
+		mlx_image_to_window(num->mlx, num->ocean, d * 75, (c-1) * 75);
 		num->hona = 0;
+	}
 }
 
 int	main(int ac, char **av)

@@ -6,7 +6,7 @@
 /*   By: arekoune <arekoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 14:21:37 by arekoune          #+#    #+#             */
-/*   Updated: 2024/05/25 20:40:12 by arekoune         ###   ########.fr       */
+/*   Updated: 2024/05/26 17:14:34 by arekoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,31 @@ typedef struct s_num
 	mlx_image_t *anime7;
 	mlx_image_t *anime8;
 	
-	mlx_image_t *enemy0;
 	mlx_image_t *enemy1;
+	mlx_image_t *enemy2;
+	mlx_image_t *enemy3;
+	mlx_image_t *enemy4;
+	mlx_image_t *enemy5;
+	mlx_image_t *enemy6;
+	mlx_image_t *enemy7;
+	mlx_image_t *enemy8;
 	
 	int			hona;
 
 }				t_num;
+
+// typedef struct s_object {
+// 	mlx_image_t **images;
+// 	mlx_image_t *current_image;
+// } t_object;
+
+// typedef struct s_componenets {
+// 	t_object enemey;
+// 	t_object coin;
+// 	t_object wall;
+// } t_components;
+// componet.coin.current_image
+// componet.enemy.current_image
 
 // so_long.c
 mlx_image_t		*get_image(char *path, mlx_t *mlx, char **map);
