@@ -6,7 +6,7 @@
 /*   By: arekoune <arekoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 11:10:08 by arekoune          #+#    #+#             */
-/*   Updated: 2024/05/25 10:26:58 by arekoune         ###   ########.fr       */
+/*   Updated: 2024/05/26 18:33:15 by arekoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,19 @@ int	compare(char *s1, char *s2)
 	return (s1[i] - s2[i]);
 }
 
-t_map	*new_node(char *content)
+t_list	*new_node(char *content)
 {
-	t_map	*node;
+	t_list	*node;
 
-	node = malloc(sizeof(t_map));
+	node = malloc(sizeof(t_list));
 	node->line = content;
 	node->next = NULL;
 	return (node);
 }
 
-void	add_back(t_map **head, t_map *new)
+void	add_back(t_list **head, t_list *new)
 {
-	t_map	*node;
+	t_list	*node;
 
 	node = *head;
 	if (!(*head))
@@ -51,7 +51,7 @@ void	add_back(t_map **head, t_map *new)
 	}
 }
 
-int	list_size(t_map *head)
+int	list_size(t_list *head)
 {
 	int	i;
 
@@ -64,9 +64,9 @@ int	list_size(t_map *head)
 	return (i);
 }
 
-void	free_list(t_map **head, char c)
+void	free_list(t_list **head, char c)
 {
-	t_map	*node;
+	t_list	*node;
 
 	node = *head;
 	while (*head)

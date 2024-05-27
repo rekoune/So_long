@@ -6,16 +6,16 @@
 /*   By: arekoune <arekoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 11:09:52 by arekoune          #+#    #+#             */
-/*   Updated: 2024/05/25 13:34:26 by arekoune         ###   ########.fr       */
+/*   Updated: 2024/05/27 13:15:17 by arekoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-char	**switch_to_array(t_map **head)
+char	**switch_to_array(t_list **head)
 {
 	char	**array;
-	t_map	*node;
+	t_list	*node;
 	int		i;
 
 	i = 0;
@@ -30,7 +30,7 @@ char	**switch_to_array(t_map **head)
 	return (array);
 }
 
-char	**copying_map(t_map *head)
+char	**copying_map(t_list *head)
 {
 	int		i;
 	char	**cpy;
@@ -78,21 +78,21 @@ void	check_path(char **map)
 	}
 }
 
-void	position(t_num *map)
+void	position(t_game *game)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (map->map[i])
+	while (game->map.array[i])
 	{
 		j = 0;
-		while (map->map[i][j] && map->map[i][j] != '\n')
+		while (game->map.array[i][j] && game->map.array[i][j] != '\n')
 		{
-			if (map->map[i][j] == 'E')
+			if (game->map.array[i][j] == 'E')
 			{
-				map->e_x = j;
-				map->e_y = i;
+				game->element.exit.x = j;
+				game->element.exit.y = i;
 			}
 			j++;
 		}

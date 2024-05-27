@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   move_player_bonus.c                                :+:      :+:    :+:   */
+/*   move_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arekoune <arekoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 17:19:22 by arekoune          #+#    #+#             */
-/*   Updated: 2024/05/27 15:41:46 by arekoune         ###   ########.fr       */
+/*   Updated: 2024/05/27 16:23:35 by arekoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_bonus.h"
+#include "so_long.h"
 
 void	move_up(t_game *game, int a)
 {
@@ -93,7 +93,7 @@ void	move_right(t_game *game, int a)
 	(void)a;
 }
 
-void	move_left(t_game *game, int a)
+void	move_lift(t_game *game, int a)
 {
 	char	*str;
 
@@ -126,7 +126,7 @@ void	move_player(t_game *game, char c, int a)
 	if (c == 'W')
 		move_up(game, a);
 	else if (c == 'A')
-		move_left(game, a);
+		move_lift(game, a);
 	else if (c == 'S')
 		move_down(game, a);
 	else if (c == 'D')

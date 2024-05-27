@@ -6,13 +6,13 @@
 /*   By: arekoune <arekoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 11:09:56 by arekoune          #+#    #+#             */
-/*   Updated: 2024/05/25 12:59:06 by arekoune         ###   ########.fr       */
+/*   Updated: 2024/05/27 15:16:56 by arekoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	elements_calcul(char *str, t_num *num)
+int	elements_calcul(char *str, t_game *game)
 {
 	int	i;
 	int	len;
@@ -26,58 +26,59 @@ int	elements_calcul(char *str, t_num *num)
 			return (0);
 		if (str[i] == 'P')
 		{
-			num->p++;
-			num->nf = 1;
-			num->p_x = i;
+			game->element.player.counter++;
+			game->map.nf = 1;
+			game->element.player.x = i;
 		}
 		else if (str[i] == 'E')
-			num->e++;
+			game->element.exit.counter++;
 		else if (str[i] == 'C')
-			num->c++;
+			game->element.coin.counter++;
 		i++;
 	}
 	return (1);
 }
 
-void	check_elements(t_map **head, t_num *num)
+void	check_elements(t_list **head, t_game *game)
 {
-	t_map	*node;
+	t_list	*node;
 	int		i;
 	int		a;
 
 	i = 0;
 	node = *head;
-	num->nf = 0;
+	game->map.nf = 0;
 	while (node)
 	{
-		a = elements_calcul(node->line, num);
+		a = elements_calcul(node->line, game);
 		if (a == 0)
 			break ;
-		if (num->nf == 1)
+		if (game->map.nf == 1)
 		{
-			num->p_y = i;
-			num->nf = 0;
+			game->element.player.y = i;
+			game->map.nf = 0;
 		}
 		node = node->next;
 		i++;
 	}
-	if (num->c < 1 || num->p != 1 || num->e != 1 || a == 0)
+	if (game->element.coin.counter < 1 || game->element.player.counter != 1
+		|| game->element.exit.counter != 1 || a == 0)
 		error("Invalid map\n", head, NULL);
 }
 
-void	get_map_lines(int fd, t_map **head, t_num *num)
+void	get_list_lines(int fd, t_list **head, t_game *game)
 {
-	t_map	*node;
+	t_list	*node;
 	int		size;
 
-	num->p = 0;
-	num->e = 0;
-	num->c = 0;
-	num->p_x = 0;
-	num->p_y = 0;
+	game->element.player.counter = 0;
+	game->element.exit.counter = 0;
+	game->element.coin.counter = 0;
+	game->element.player.x = 0;
+	game->element.player.y = 0;
 	node = new_node(get_next_line(fd));
 	size = str_len_c(node->line, '\n');
-	num->n_char = size;
+	game->map.n_char = size;
 	while (node->line)
 	{
 		add_back(head, node);
@@ -85,15 +86,15 @@ void	get_map_lines(int fd, t_map **head, t_num *num)
 		if (node->line && size != str_len_c(node->line, '\n'))
 			error("Invalid map\n", head, NULL);
 	}
-	num->n_line = list_size(*head);
-	if (num->n_line > 17 || num->n_char > 34)
+	game->map.n_line = list_size(*head);
+	if (game->map.n_line > 17 || game->map.n_char > 34)
 		error("Invalid map\n", head, NULL);
 	free(node);
 }
 
-void	check_walls(t_map **head)
+void	check_walls(t_list **head)
 {
-	t_map	*node;
+	t_list	*node;
 	int		i;
 
 	node = *head;
@@ -114,12 +115,12 @@ void	check_walls(t_map **head)
 			error("Invalid map\n", head, NULL);
 }
 
-char	**check_map(char *str, t_num *num)
+char	**check_map(char *str, t_game *game)
 {
 	int		fd;
 	char	**map;
 	char	**map_copy;
-	t_map	*head;
+	t_list	*head;
 
 	head = NULL;
 	if (compare(str + (str_len_c(str, '\0') - 4), ".ber") != 0)
@@ -127,14 +128,15 @@ char	**check_map(char *str, t_num *num)
 	fd = open(str, O_RDWR);
 	if (fd == -1)
 		error("Map file not exist\n", NULL, NULL);
-	get_map_lines(fd, &head, num);
-	check_elements(&head, num);
+	get_list_lines(fd, &head, game);
+	check_elements(&head, game);
 	check_walls(&head);
 	map = switch_to_array(&head);
 	map_copy = copying_map(head);
-	flood_fill(map_copy, num->p_x, num->p_y, list_size(head));
+	flood_fill(map_copy, game->element.player.x, game->element.player.y,
+		list_size(head));
 	check_path(map_copy);
-	free_2d(map_copy);
+	free_2d(map_copy, 'a');
 	free_list(&head, 'n');
 	return (map);
 }

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   move_player_utils_bonus.c                          :+:      :+:    :+:   */
+/*   move_player_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arekoune <arekoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 18:59:15 by arekoune          #+#    #+#             */
-/*   Updated: 2024/05/27 15:41:21 by arekoune         ###   ########.fr       */
+/*   Updated: 2024/05/27 16:19:35 by arekoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_bonus.h"
+#include "so_long.h"
 
 void	eat_coin(t_game *game, int a)
 {
@@ -57,22 +57,22 @@ char	*get_digit(long nb)
 void	get_player_pointers(t_game *game)
 {
 	game->element.player.image = malloc(9 * sizeof(mlx_image_t));
-	game->element.player.image[0] = get_image
-		("bonus/textures/player.png", game);
+	game->element.player.image[0] = get_image("mandatory/textures/player.png",
+			game);
 	game->element.player.image[1] = get_image
-		("bonus/textures/player_left.png", game);
-	game->element.player.image[2] = get_image
-		("bonus/textures/walking.png", game);
-	game->element.player.image[3] = get_image
-		("bonus/textures/left.png", game);
-	game->element.player.image[4] = get_image
-		("bonus/textures/up.png", game);
-	game->element.player.image[5] = get_image
-		("bonus/textures/up_left.png", game);
-	game->element.player.image[6] = get_image
-		("bonus/textures/hunt.png", game);
+		("mandatory/textures/player_left.png", game);
+	game->element.player.image[2] = get_image("mandatory/textures/walking.png",
+			game);
+	game->element.player.image[3] = get_image("mandatory/textures/left.png",
+			game);
+	game->element.player.image[4] = get_image("mandatory/textures/up.png",
+			game);
+	game->element.player.image[5] = get_image("mandatory/textures/up_left.png",
+			game);
+	game->element.player.image[6] = get_image("mandatory/textures/hunt.png",
+			game);
 	game->element.player.image[7] = get_image
-		("bonus/textures/left_hunt.png", game);
+		("mandatory/textures/left_hunt.png", game);
 	game->element.player.image[8] = NULL;
 }
 
