@@ -6,7 +6,7 @@
 /*   By: arekoune <arekoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 17:19:22 by arekoune          #+#    #+#             */
-/*   Updated: 2024/05/27 15:41:46 by arekoune         ###   ########.fr       */
+/*   Updated: 2024/05/27 21:01:56 by arekoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,8 @@ void	move_up(t_game *game, int a)
 		player_image_to_window(game, game->element.player.image[4]);
 	game->moves++;
 	str = get_digit(game->moves);
-	ft_write("moves = ", 1);
-	ft_write(str, 1);
-	ft_write("\n", 1);
+	image_to_window(game, game->element.ground.image[0], 0, 0);
+	mlx_put_string(game->mlx, str, 22, 30);
 	free(str);
 }
 
@@ -60,10 +59,10 @@ void	move_down(t_game *game, int a)
 		player_image_to_window(game, game->element.player.image[1]);
 	else
 		player_image_to_window(game, game->element.player.image[0]);
-	str = get_digit(++game->moves);
-	ft_write("moves = ", 1);
-	ft_write(str, 1);
-	ft_write("\n", 1);
+	game->moves++;
+	str = get_digit(game->moves);
+	image_to_window(game, game->element.ground.image[0], 0, 0);
+	mlx_put_string(game->mlx, str, 22, 30);
 	free(str);
 }
 
@@ -86,9 +85,8 @@ void	move_right(t_game *game, int a)
 	player_image_to_window(game, game->element.player.image[2]);
 	game->moves++;
 	str = get_digit(game->moves);
-	ft_write("moves = ", 1);
-	ft_write(str, 1);
-	ft_write("\n", 1);
+	image_to_window(game, game->element.ground.image[0], 0, 0);
+	mlx_put_string(game->mlx, str, 22, 30);
 	free(str);
 	(void)a;
 }
@@ -112,9 +110,9 @@ void	move_left(t_game *game, int a)
 	player_image_to_window(game, game->element.player.image[3]);
 	game->moves++;
 	str = get_digit(game->moves);
-	ft_write("moves = ", 1);
-	ft_write(str, 1);
-	ft_write("\n", 1);
+	str = get_digit(game->moves);
+	image_to_window(game, game->element.ground.image[0], 0, 0);
+	mlx_put_string(game->mlx, str, 22, 30);
 	free(str);
 	(void)a;
 }

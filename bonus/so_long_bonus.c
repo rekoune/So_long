@@ -6,7 +6,7 @@
 /*   By: arekoune <arekoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 11:09:46 by arekoune          #+#    #+#             */
-/*   Updated: 2024/05/27 15:30:23 by arekoune         ###   ########.fr       */
+/*   Updated: 2024/05/27 21:32:36 by arekoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	get_pointers(t_game *game)
 {
 	get_player_pointers(game);
+	get_coin_pointers(game);
 	game->element.coin.image = malloc(2 * sizeof(mlx_image_t));
 	game->element.coin.image[0] = get_image("bonus/textures/coins.png", game);
 	game->element.coin.image[1] = NULL;
@@ -50,7 +51,7 @@ void	draw_the_map(t_game *game)
 			else
 				image_to_window(game, game->element.ocean.image[0], j, i);
 			if (game->map.array[i][j] == 'C')
-				image_to_window(game, game->element.coin.image[0], j, i);
+				print_coins(game, game->animation.coin, j, i);
 			else if (game->map.array[i][j] == 'E')
 				image_to_window(game, game->element.exit.image[0], j, i);
 			j++;
@@ -58,6 +59,7 @@ void	draw_the_map(t_game *game)
 		i++;
 	}
 	player_image_to_window(game, game->element.player.image[0]);
+	print_coins(game, game->animation.enemy_up, 0, 0);
 }
 
 void	my_key_hok(mlx_key_data_t data, void *param)
@@ -101,6 +103,8 @@ int	main(int ac, char **av)
 {
 	t_game	game;
 
+	game.animation.timer = 0;
+	game.animation.timer_e = 0;
 	game.map.array = NULL;
 	game.element.player.image = NULL;
 	game.element.ocean.image = NULL;
@@ -112,11 +116,13 @@ int	main(int ac, char **av)
 	{
 		game.map.array = check_map(av[1], &game);
 		game.mlx = mlx_init(game.map.n_char * 75, game.map.n_line * 75,
-				"so_long_bonus", false);
+				"so_long_bonus", true);
 		if (!game.mlx)
 			error("Mlx fails !\n", NULL, game.map.array);
 		draw_the_map(&game);
+		game.element.ground.image[0]->enabled = 1;
 		mlx_key_hook(game.mlx, &my_key_hok, &game);
+		mlx_loop_hook(game.mlx, &animation, &game);
 		mlx_loop(game.mlx);
 		free_2d(game.map.array, 'a');
 		free_resources(&game);

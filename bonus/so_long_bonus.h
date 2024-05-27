@@ -6,7 +6,7 @@
 /*   By: arekoune <arekoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 11:10:18 by arekoune          #+#    #+#             */
-/*   Updated: 2024/05/27 15:41:46 by arekoune         ###   ########.fr       */
+/*   Updated: 2024/05/27 21:30:24 by arekoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <fcntl.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdio.h>
 
 typedef struct s_list
 {
@@ -50,11 +51,25 @@ typedef struct s_map
 	int				nf;
 }					t_map;
 
+typedef struct s_animation
+{
+	mlx_image_t 	**coin;
+	mlx_image_t		**enemy_up;
+	mlx_image_t		**enemy_down;
+	mlx_image_t		**enemy_right;
+	mlx_image_t		**enemy_left;
+	int				timer;
+	int				timer_e;
+	
+}					t_animation;
+
+
 typedef struct s_game
 {
 	t_element		element;
 	t_map			map;
 	mlx_t			*mlx;
+	t_animation		animation;
 	unsigned int	moves;
 }					t_game;
 
@@ -110,5 +125,10 @@ void				image_to_window(t_game *game, mlx_image_t *img,
 //utils_2.c
 void				free_objects(t_object object, mlx_t *mlx);
 void				player_image_to_window(t_game *game, mlx_image_t *img);
+
+//animation.c
+void				animation(void *game);
+void				print_coins(t_game *game, mlx_image_t **img, int x, int y);
+void				get_coin_pointers(t_game *game);
 
 #endif
