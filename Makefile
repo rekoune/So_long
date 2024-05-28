@@ -3,7 +3,7 @@ CFILES = mandatory/so_long.c  mandatory/check_map.c  mandatory/check_map_utils.c
 		mandatory/get_next_line.c  mandatory/get_next_line_utils.c
 BFILES = bonus/so_long_bonus.c bonus/check_map_bonus.c bonus/check_map_utils_bonus.c bonus/list_utils_bonus.c\
 		bonus/utils_bonus.c bonus/utils_2_bonus.c bonus/move_player_bonus.c bonus/move_player_utils_bonus.c\
-		bonus/get_next_line_bonus.c bonus/get_next_line_utils_bonus.c bonus/animation.c
+		bonus/get_next_line_bonus.c bonus/get_next_line_utils_bonus.c bonus/animation.c bonus/get_pointers.c bonus/enemy_moves.c
 
 BOFILES = $(BFILES:.c=.o)
 OFILES = $(CFILES:.c=.o)

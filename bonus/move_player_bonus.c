@@ -6,7 +6,7 @@
 /*   By: arekoune <arekoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 17:19:22 by arekoune          #+#    #+#             */
-/*   Updated: 2024/05/27 21:01:56 by arekoune         ###   ########.fr       */
+/*   Updated: 2024/05/28 12:18:10 by arekoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	move_up(t_game *game, int a)
 		player_image_to_window(game, game->element.player.image[4]);
 	}
 	if (game->map.array[game->element.player.y
-			- 1][game->element.player.x] == '1')
+		- 1][game->element.player.x] == '1')
 		return ;
 	player_image_to_window(game, game->element.ocean.image[0]);
 	if (game->map.array[game->element.player.y][game->element.player.x] == 'E')
@@ -49,7 +49,7 @@ void	move_down(t_game *game, int a)
 		player_image_to_window(game, game->element.player.image[0]);
 	}
 	if (game->map.array[game->element.player.y
-			+ 1][game->element.player.x] == '1')
+		+ 1][game->element.player.x] == '1')
 		return ;
 	player_image_to_window(game, game->element.ocean.image[0]);
 	if (game->map.array[game->element.player.y][game->element.player.x] == 'E')
@@ -135,12 +135,13 @@ void	move_player(t_game *game, char c, int a)
 		mlx_image_to_window(game->mlx, game->element.exit.image[1],
 			game->element.exit.x * 75, game->element.exit.y * 75);
 	if (game->element.coin.counter == 0
-		&& game->map.array[game->element.player.y]
-		[game->element.player.x] == 'E')
+		&& game->map.array[game->element.player.y][game->element.player.x] == 'E')
 	{
 		free_resources(game);
 		free_2d(game->map.array, 'e');
 	}
+	if (game->map.array[game->element.player.y][game->element.player.x] == 'A')
+		exit(0);
 	if (game->map.array[game->element.player.y][game->element.player.x] != 'E')
 		game->map.array[game->element.player.y][game->element.player.x] = 'P';
 }

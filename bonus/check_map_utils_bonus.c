@@ -6,7 +6,7 @@
 /*   By: arekoune <arekoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 11:09:52 by arekoune          #+#    #+#             */
-/*   Updated: 2024/05/27 13:15:17 by arekoune         ###   ########.fr       */
+/*   Updated: 2024/05/28 17:43:56 by arekoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	check_path(char **map)
 	}
 }
 
-void	position(t_game *game)
+void	position(t_game *game, int *x, int *y, char to_find)
 {
 	int	i;
 	int	j;
@@ -89,10 +89,10 @@ void	position(t_game *game)
 		j = 0;
 		while (game->map.array[i][j] && game->map.array[i][j] != '\n')
 		{
-			if (game->map.array[i][j] == 'E')
+			if (game->map.array[i][j] == to_find)
 			{
-				game->element.exit.x = j;
-				game->element.exit.y = i;
+				*x = j;
+				*y = i;
 			}
 			j++;
 		}

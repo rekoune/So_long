@@ -6,7 +6,7 @@
 /*   By: arekoune <arekoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 11:09:46 by arekoune          #+#    #+#             */
-/*   Updated: 2024/05/27 21:32:36 by arekoune         ###   ########.fr       */
+/*   Updated: 2024/05/28 19:52:50 by arekoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,21 @@ void	get_pointers(t_game *game)
 {
 	get_player_pointers(game);
 	get_coin_pointers(game);
+	get_enemy_pointers(game);
 	game->element.coin.image = malloc(2 * sizeof(mlx_image_t));
 	game->element.coin.image[0] = get_image("bonus/textures/coins.png", game);
 	game->element.coin.image[1] = NULL;
 	game->element.ground.image = malloc(2 * sizeof(mlx_image_t));
-	game->element.ground.image[0] = get_image
-		("bonus/textures/ground.png", game);
+	game->element.ground.image[0] = get_image("bonus/textures/ground.png",
+			game);
 	game->element.ground.image[1] = NULL;
 	game->element.ocean.image = malloc(2 * sizeof(mlx_image_t));
 	game->element.ocean.image[0] = get_image("bonus/textures/ocean.png", game);
 	game->element.ocean.image[1] = NULL;
 	game->element.exit.image = malloc(3 * sizeof(mlx_image_t));
 	game->element.exit.image[0] = get_image("bonus/textures/exit.png", game);
-	game->element.exit.image[1] = get_image
-		("bonus/textures/door_open.png", game);
+	game->element.exit.image[1] = get_image("bonus/textures/door_open.png",
+			game);
 	game->element.exit.image[2] = NULL;
 }
 
@@ -39,27 +40,26 @@ void	draw_the_map(t_game *game)
 	int	j;
 
 	get_pointers(game);
-	position(game);
-	i = 0;
-	while (game->map.array[i])
+	position(game, &game->element.exit.x, &game->element.exit.y, 'E');
+	i = -1;
+	while (game->map.array[++i])
 	{
-		j = 0;
-		while (game->map.array[i][j] && game->map.array[i][j] != '\n')
+		j = -1;
+		while (game->map.array[i][++j] && game->map.array[i][j] != '\n')
 		{
 			if (game->map.array[i][j] == '1')
 				image_to_window(game, game->element.ground.image[0], j, i);
 			else
 				image_to_window(game, game->element.ocean.image[0], j, i);
 			if (game->map.array[i][j] == 'C')
-				print_coins(game, game->animation.coin, j, i);
+				print_images(game, game->animation.coin, j, i);
+			else if (game->map.array[i][j] == 'A')
+				print_images(game, game->animation.enemy_up.image, j, i);
 			else if (game->map.array[i][j] == 'E')
 				image_to_window(game, game->element.exit.image[0], j, i);
-			j++;
 		}
-		i++;
 	}
 	player_image_to_window(game, game->element.player.image[0]);
-	print_coins(game, game->animation.enemy_up, 0, 0);
 }
 
 void	my_key_hok(mlx_key_data_t data, void *param)

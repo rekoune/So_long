@@ -57,22 +57,19 @@ char	*get_digit(long nb)
 void	get_player_pointers(t_game *game)
 {
 	game->element.player.image = malloc(9 * sizeof(mlx_image_t));
-	game->element.player.image[0] = get_image
-		("bonus/textures/player.png", game);
-	game->element.player.image[1] = get_image
-		("bonus/textures/player_left.png", game);
-	game->element.player.image[2] = get_image
-		("bonus/textures/walking.png", game);
-	game->element.player.image[3] = get_image
-		("bonus/textures/left.png", game);
-	game->element.player.image[4] = get_image
-		("bonus/textures/up.png", game);
-	game->element.player.image[5] = get_image
-		("bonus/textures/up_left.png", game);
-	game->element.player.image[6] = get_image
-		("bonus/textures/hunt.png", game);
-	game->element.player.image[7] = get_image
-		("bonus/textures/left_hunt.png", game);
+	game->element.player.image[0] = get_image("bonus/textures/player.png",
+			game);
+	game->element.player.image[1] = get_image("bonus/textures/player_left.png",
+			game);
+	game->element.player.image[2] = get_image("bonus/textures/walking.png",
+			game);
+	game->element.player.image[3] = get_image("bonus/textures/left.png", game);
+	game->element.player.image[4] = get_image("bonus/textures/up.png", game);
+	game->element.player.image[5] = get_image("bonus/textures/up_left.png",
+			game);
+	game->element.player.image[6] = get_image("bonus/textures/hunt.png", game);
+	game->element.player.image[7] = get_image("bonus/textures/left_hunt.png",
+			game);
 	game->element.player.image[8] = NULL;
 }
 

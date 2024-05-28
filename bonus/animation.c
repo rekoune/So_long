@@ -1,95 +1,98 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   animation.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: arekoune <arekoune@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/28 19:36:54 by arekoune          #+#    #+#             */
+/*   Updated: 2024/05/28 19:48:17 by arekoune         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long_bonus.h"
 
-void	get_coin_pointers(t_game *game)
-{
-	game->animation.coin = malloc(9 * sizeof(mlx_image_t));
-	game->animation.coin[0] = get_image("bonus/textures/coin1.png", game);
-	game->animation.coin[1] = get_image("bonus/textures/coin2.png", game);
-	game->animation.coin[2] = get_image("bonus/textures/coin3.png", game);
-	game->animation.coin[3] = get_image("bonus/textures/coin4.png", game);
-	game->animation.coin[4] = get_image("bonus/textures/coin5.png", game);
-	game->animation.coin[5] = get_image("bonus/textures/coin6.png", game);
-	game->animation.coin[6] = get_image("bonus/textures/coin7.png", game);
-	game->animation.coin[7] = get_image("bonus/textures/coin8.png", game);
-	game->animation.coin[8] = NULL;
-
-	game->animation.enemy_up = malloc(9 * sizeof(mlx_image_t));
-	game->animation.enemy_up[0] = get_image("bonus/textures/enemy1.png", game);
-	game->animation.enemy_up[1] = get_image("bonus/textures/enemy2.png", game);
-	game->animation.enemy_up[2] = get_image("bonus/textures/enemy3.png", game);
-	game->animation.enemy_up[3] = get_image("bonus/textures/enemy4.png", game);
-	game->animation.enemy_up[4] = get_image("bonus/textures/enemy5.png", game);
-	game->animation.enemy_up[5] = get_image("bonus/textures/enemy6.png", game);
-	game->animation.enemy_up[6] = get_image("bonus/textures/enemy7.png", game);
-	game->animation.enemy_up[7] = get_image("bonus/textures/enemy8.png", game);
-	game->animation.enemy_up[8] = NULL;
-}
-
-void	print_coins(t_game *game, mlx_image_t **img, int x, int y)
+void	print_images(t_game *game, mlx_image_t **img, int x, int y)
 {
 	int	i;
 
 	i = 0;
-	while(i < 8)
+	while (i < 8)
 	{
 		image_to_window(game, img[i], x, y);
 		i++;
 	}
 }
 
-void	enable(mlx_image_t **image, mlx_image_t *current_img)
-{
-	int i;
-
-	i = 0;
-	while (i < 8)
-		image[i++]->enabled = 0;
-	current_img->enabled = 1;
-}
 void	coin_animation(t_game *game)
 {
-		if (game->animation.timer == 10)
-			enable(game->animation.coin, game->animation.coin[0]);
-		else if (game->animation.timer == 20)
-			enable(game->animation.coin, game->animation.coin[1]);
-		else if (game->animation.timer == 30)
-			enable(game->animation.coin, game->animation.coin[2]);
-		else if (game->animation.timer == 40)
-			enable(game->animation.coin, game->animation.coin[3]);
-		else if (game->animation.timer == 50)
-			enable(game->animation.coin, game->animation.coin[4]);
-		else if (game->animation.timer == 60)
-			enable(game->animation.coin, game->animation.coin[5]);
-		else if (game->animation.timer == 70)
-			enable(game->animation.coin, game->animation.coin[6]);
-		else if (game->animation.timer == 80)
-			enable(game->animation.coin, game->animation.coin[7]);
-		game->animation.timer++;
+	if (game->animation.timer == 10)
+		enable(game->animation.coin, game->animation.coin[0]);
+	else if (game->animation.timer == 20)
+		enable(game->animation.coin, game->animation.coin[1]);
+	else if (game->animation.timer == 30)
+		enable(game->animation.coin, game->animation.coin[2]);
+	else if (game->animation.timer == 40)
+		enable(game->animation.coin, game->animation.coin[3]);
+	else if (game->animation.timer == 50)
+		enable(game->animation.coin, game->animation.coin[4]);
+	else if (game->animation.timer == 60)
+		enable(game->animation.coin, game->animation.coin[5]);
+	else if (game->animation.timer == 70)
+		enable(game->animation.coin, game->animation.coin[6]);
+	else if (game->animation.timer == 80)
+		enable(game->animation.coin, game->animation.coin[7]);
+	game->animation.timer++;
 	if (game->animation.timer == 81)
 		game->animation.timer = 0;
 }
 
-void	enemy_animation(t_game *game)
+void	enemy_animation(t_game *game, mlx_image_t **img)
 {
-	if (game->animation.timer_e == 10)
-		enable(game->animation.enemy_up, game->animation.enemy_up[0]);
+	if (game->animation.timer_e == 6)
+		enable(img, img[0]);
 	else if (game->animation.timer_e == 20)
-		enable(game->animation.enemy_up, game->animation.enemy_up[1]);
+		enable(img, img[1]);
 	else if (game->animation.timer_e == 30)
-		enable(game->animation.enemy_up, game->animation.enemy_up[2]);
+		enable(img, img[2]);
 	else if (game->animation.timer_e == 40)
-		enable(game->animation.enemy_up, game->animation.enemy_up[3]);
+		enable(img, img[3]);
 	else if (game->animation.timer_e == 50)
-		enable(game->animation.enemy_up, game->animation.enemy_up[4]);
+		enable(img, img[4]);
 	else if (game->animation.timer_e == 60)
-		enable(game->animation.enemy_up, game->animation.enemy_up[5]);
+		enable(img, img[5]);
 	else if (game->animation.timer_e == 70)
-		enable(game->animation.enemy_up, game->animation.enemy_up[6]);
+		enable(img, img[6]);
 	else if (game->animation.timer_e == 80)
-		enable(game->animation.enemy_up, game->animation.enemy_up[7]);
+		enable(img, img[7]);
 	game->animation.timer_e++;
 	if (game->animation.timer_e == 81)
 		game->animation.timer_e = 0;
+}
+
+void	update_enemy(t_game *game, char c, int y, int x)
+{
+	image_to_window(game, game->element.ocean.image[0], x, y);
+	game->map.array[y][x] = '0';
+	if (c == 'u')
+		y = --game->animation.enemy_up.y;
+	else if (c == 'd')
+		y = ++game->animation.enemy_down.y;
+	else if (c == 'r')
+		x = ++game->animation.enemy_right.x;
+	else if (c == 'l')
+		x = --game->animation.enemy_left.x;
+	if (game->map.array[y][x] == 'P')
+		exit(0);
+	game->map.array[y][x] = 'A';
+	if (game->map.array[y - 1][x] == '1' && c == 'u')
+		print_images(game, game->animation.enemy_right.image, x, y);
+	else if (game->map.array[y + 1][x] == '1' && c == 'd')
+		print_images(game, game->animation.enemy_left.image, x, y);
+	else if (game->map.array[y][x + 1] == '1' && c == 'r')
+		print_images(game, game->animation.enemy_down.image, x, y);
+	else if (game->map.array[y][x - 1] == '1' && c == 'l')
+		print_images(game, game->animation.enemy_up.image, x, y);
 }
 
 void	animation(void *param)
@@ -98,5 +101,5 @@ void	animation(void *param)
 
 	game = param;
 	coin_animation(game);
-	enemy_animation(game);
+	enemy_moves(game);
 }
