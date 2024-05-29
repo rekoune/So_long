@@ -6,7 +6,7 @@
 /*   By: arekoune <arekoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 11:09:46 by arekoune          #+#    #+#             */
-/*   Updated: 2024/05/29 12:05:07 by arekoune         ###   ########.fr       */
+/*   Updated: 2024/05/29 12:13:26 by arekoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ int	main(int ac, char **av)
 	{
 		game.map.array = check_map(av[1], &game);
 		game.mlx = mlx_init(game.map.n_char * 75, game.map.n_line * 75,
-				"so_long_bonus", true);
+				"so_long_bonus", false);
 		if (!game.mlx)
 			error("Mlx fails !\n", NULL, game.map.array);
 		draw_the_map(&game);

@@ -6,7 +6,7 @@
 /*   By: arekoune <arekoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 11:09:52 by arekoune          #+#    #+#             */
-/*   Updated: 2024/05/28 17:43:56 by arekoune         ###   ########.fr       */
+/*   Updated: 2024/05/29 12:59:40 by arekoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char	**copying_map(t_list *head)
 void	flood_fill(char **map, int x, int y, int size)
 {
 	if (x < 0 || x > str_len_c(map[y], '\0') || y > size || y < 0
-		|| map[y][x] == '1')
+		|| map[y][x] == '1' || map[y][x] == 'A')
 		return ;
 	map[y][x] = '1';
 	flood_fill(map, x - 1, y, size);
