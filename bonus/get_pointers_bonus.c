@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_pointers.c                                     :+:      :+:    :+:   */
+/*   get_pointers_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arekoune <arekoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 09:29:30 by arekoune          #+#    #+#             */
-/*   Updated: 2024/05/29 11:18:28 by arekoune         ###   ########.fr       */
+/*   Updated: 2024/05/29 12:02:50 by arekoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	up_pointers(t_game *game)
 {
-	game->animation.enemy_up.image = NULL;
 	game->animation.enemy_up.image = malloc(9 * sizeof(mlx_image_t));
 	game->animation.enemy_up.image[0] = 
 		get_image("bonus/textures/enemy1.png", game);
@@ -40,7 +39,6 @@ void	get_enemy_pointers(t_game *game)
 	up_pointers(game);
 	down_pointers(game);
 	left_pointers(game);
-	game->animation.enemy_right.image = NULL;
 	game->animation.enemy_right.image = malloc(9 * sizeof(mlx_image_t));
 	game->animation.enemy_right.image[0] = 
 		get_image("bonus/textures/right1.png", game);
@@ -63,7 +61,6 @@ void	get_enemy_pointers(t_game *game)
 
 void	get_coin_pointers(t_game *game)
 {
-	game->animation.coin = NULL;
 	game->animation.coin = malloc(9 * sizeof(mlx_image_t));
 	game->animation.coin[0] = get_image("bonus/textures/coin1.png", game);
 	game->animation.coin[1] = get_image("bonus/textures/coin2.png", game);

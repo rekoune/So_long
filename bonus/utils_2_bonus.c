@@ -6,7 +6,7 @@
 /*   By: arekoune <arekoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 12:32:40 by arekoune          #+#    #+#             */
-/*   Updated: 2024/05/29 11:18:02 by arekoune         ###   ########.fr       */
+/*   Updated: 2024/05/29 12:03:54 by arekoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	player_image_to_window(t_game *game, mlx_image_t *img)
 
 void	down_pointers(t_game *game)
 {
-	game->animation.enemy_down.image = NULL;
 	game->animation.enemy_down.image = malloc(9 * sizeof(mlx_image_t));
 	game->animation.enemy_down.image[0] = 
 		get_image("bonus/textures/down_1.png", game);
@@ -53,7 +52,6 @@ void	down_pointers(t_game *game)
 
 void	left_pointers(t_game *game)
 {
-	game->animation.enemy_left.image = NULL;
 	game->animation.enemy_left.image = malloc(9 * sizeof(mlx_image_t));
 	game->animation.enemy_left.image[0] = 
 		get_image("bonus/textures/left_1.png", game);

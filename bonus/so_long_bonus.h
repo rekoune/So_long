@@ -6,7 +6,7 @@
 /*   By: arekoune <arekoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 11:10:18 by arekoune          #+#    #+#             */
-/*   Updated: 2024/05/29 10:29:15 by arekoune         ###   ########.fr       */
+/*   Updated: 2024/05/29 11:52:09 by arekoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,5 +148,8 @@ void				go_down(t_game *game, int *direction);
 void				go_right(t_game *game, int *direction);
 void				go_left(t_game *game, int *direction);
 void				enemy_moves(t_game *game);
+
+//pointers_to_null.c
+void				turn_to_null(t_game *game);
 
 #endif
