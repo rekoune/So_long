@@ -6,7 +6,7 @@
 /*   By: arekoune <arekoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 17:19:22 by arekoune          #+#    #+#             */
-/*   Updated: 2024/05/28 12:18:10 by arekoune         ###   ########.fr       */
+/*   Updated: 2024/05/29 11:30:06 by arekoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	move_up(t_game *game, int a)
 		player_image_to_window(game, game->element.player.image[4]);
 	}
 	if (game->map.array[game->element.player.y
-		- 1][game->element.player.x] == '1')
+			- 1][game->element.player.x] == '1')
 		return ;
 	player_image_to_window(game, game->element.ocean.image[0]);
 	if (game->map.array[game->element.player.y][game->element.player.x] == 'E')
@@ -49,7 +49,7 @@ void	move_down(t_game *game, int a)
 		player_image_to_window(game, game->element.player.image[0]);
 	}
 	if (game->map.array[game->element.player.y
-		+ 1][game->element.player.x] == '1')
+			+ 1][game->element.player.x] == '1')
 		return ;
 	player_image_to_window(game, game->element.ocean.image[0]);
 	if (game->map.array[game->element.player.y][game->element.player.x] == 'E')
@@ -110,7 +110,6 @@ void	move_left(t_game *game, int a)
 	player_image_to_window(game, game->element.player.image[3]);
 	game->moves++;
 	str = get_digit(game->moves);
-	str = get_digit(game->moves);
 	image_to_window(game, game->element.ground.image[0], 0, 0);
 	mlx_put_string(game->mlx, str, 22, 30);
 	free(str);
@@ -121,27 +120,21 @@ void	move_player(t_game *game, char c, int a)
 {
 	if (game->map.array[game->element.player.y][game->element.player.x] != 'E')
 		game->map.array[game->element.player.y][game->element.player.x] = '0';
-	if (c == 'W')
-		move_up(game, a);
-	else if (c == 'A')
-		move_left(game, a);
-	else if (c == 'S')
-		move_down(game, a);
-	else if (c == 'D')
-		move_right(game, a);
+	player_direction(game, c, a);
 	if (game->map.array[game->element.player.y][game->element.player.x] == 'C')
 		eat_coin(game, a);
 	if (game->element.coin.counter == 0)
 		mlx_image_to_window(game->mlx, game->element.exit.image[1],
 			game->element.exit.x * 75, game->element.exit.y * 75);
-	if (game->element.coin.counter == 0
-		&& game->map.array[game->element.player.y][game->element.player.x] == 'E')
+	if ((game->element.coin.counter == 0
+			&& game->map.array[game->element.player.y]
+			[game->element.player.x] == 'E') || 
+		game->map.array[game->element.player.y]
+		[game->element.player.x] == 'A')
 	{
 		free_resources(game);
 		free_2d(game->map.array, 'e');
 	}
-	if (game->map.array[game->element.player.y][game->element.player.x] == 'A')
-		exit(0);
 	if (game->map.array[game->element.player.y][game->element.player.x] != 'E')
 		game->map.array[game->element.player.y][game->element.player.x] = 'P';
 }

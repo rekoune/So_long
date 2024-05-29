@@ -6,7 +6,7 @@
 /*   By: arekoune <arekoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 11:09:46 by arekoune          #+#    #+#             */
-/*   Updated: 2024/05/27 16:24:10 by arekoune         ###   ########.fr       */
+/*   Updated: 2024/05/29 11:38:47 by arekoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,22 @@ void	get_pointers(t_game *game)
 {
 	get_player_pointers(game);
 	game->element.coin.image = malloc(2 * sizeof(mlx_image_t));
-	game->element.coin.image[0] = get_image("mandatory/textures/coins.png",
-			game);
+	game->element.coin.image[0] = 
+		get_image("mandatory/textures/coins.png", game);
 	game->element.coin.image[1] = NULL;
 	game->element.ground.image = malloc(2 * sizeof(mlx_image_t));
-	game->element.ground.image[0] = get_image("mandatory/textures/ground.png",
-			game);
+	game->element.ground.image[0] = 
+		get_image("mandatory/textures/ground.png", game);
 	game->element.ground.image[1] = NULL;
 	game->element.ocean.image = malloc(2 * sizeof(mlx_image_t));
-	game->element.ocean.image[0] = get_image("mandatory/textures/ocean.png",
-			game);
+	game->element.ocean.image[0] = 
+		get_image("mandatory/textures/ocean.png", game);
 	game->element.ocean.image[1] = NULL;
 	game->element.exit.image = malloc(3 * sizeof(mlx_image_t));
-	game->element.exit.image[0] = get_image("mandatory/textures/exit.png",
-			game);
-	game->element.exit.image[1] = get_image("mandatory/textures/door_open.png",
-			game);
+	game->element.exit.image[0] = 
+		get_image("mandatory/textures/exit.png", game);
+	game->element.exit.image[1] = 
+		get_image("mandatory/textures/door_open.png", game);
 	game->element.exit.image[2] = NULL;
 }
 

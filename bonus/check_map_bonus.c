@@ -6,7 +6,7 @@
 /*   By: arekoune <arekoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 11:09:56 by arekoune          #+#    #+#             */
-/*   Updated: 2024/05/28 09:32:44 by arekoune         ###   ########.fr       */
+/*   Updated: 2024/05/29 10:34:55 by arekoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void	check_walls(t_list **head)
 	while (node->next)
 	{
 		if (node->line[0] != '1' || node->line[str_len_c(node->line, '\n')
-			- 1] != '1')
+				- 1] != '1')
 			error("Invalid map\n", head, NULL);
 		node = node->next;
 	}
@@ -125,7 +125,7 @@ char	**check_map(char *str, t_game *game)
 	head = NULL;
 	if (compare(str + (str_len_c(str, '\0') - 4), ".ber") != 0)
 		error("Map file format not corect\n", NULL, NULL);
-	fd = open(str, O_RDWR);
+	fd = open(str, O_RDONLY);
 	if (fd == -1)
 		error("Map file not exist\n", NULL, NULL);
 	get_list_lines(fd, &head, game);

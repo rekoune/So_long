@@ -6,7 +6,7 @@
 /*   By: arekoune <arekoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 20:21:37 by arekoune          #+#    #+#             */
-/*   Updated: 2024/05/28 20:22:39 by arekoune         ###   ########.fr       */
+/*   Updated: 2024/05/29 09:29:20 by arekoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ void	go_up(t_game *game, int *direction)
 
 void	go_down(t_game *game, int *direction)
 {
-	position(game, &game->animation.enemy_down.x, &game->animation.enemy_down.y,
-		'A');
+	position(game, &game->animation.enemy_down.x,
+		&game->animation.enemy_down.y, 'A');
 	disable(game->animation.enemy_right.image);
 	enemy_animation(game, game->animation.enemy_down.image);
 	if (game->animation.timer_e == 80
@@ -65,53 +65,53 @@ void	go_right(t_game *game, int *direction)
 	disable(game->animation.enemy_up.image);
 	enemy_animation(game, game->animation.enemy_right.image);
 	if (game->animation.timer == 80
-		&& game->map.array[game->animation.enemy_right.y][game->animation.enemy_right.x
-			+ 1] != '1'
-		&& game->map.array[game->animation.enemy_right.y][game->animation.enemy_right.x
-			+ 1] != 'C')
+		&& game->map.array[game->animation.enemy_right.y]
+		[game->animation.enemy_right.x + 1] != '1'
+		&& game->map.array[game->animation.enemy_right.y]
+		[game->animation.enemy_right.x + 1] != 'C')
 	{
 		update_enemy(game, 'r', game->animation.enemy_right.y,
 			game->animation.enemy_right.x);
 		print_images(game, game->animation.enemy_right.image,
 			game->animation.enemy_right.x, game->animation.enemy_right.y);
 	}
-	else if (game->map.array[game->animation.enemy_right.y][game->animation.enemy_right.x
-			+ 1] != '0'
-		&& game->map.array[game->animation.enemy_right.y][game->animation.enemy_right.x
-			+ 1] != 'P')
+	else if (game->map.array[game->animation.enemy_right.y]
+		[game->animation.enemy_right.x + 1] != '0'
+		&& game->map.array[game->animation.enemy_right.y]
+		[game->animation.enemy_right.x + 1] != 'P')
 		*direction = 2;
 }
 
 void	go_left(t_game *game, int *direction)
 {
-	position(game, &game->animation.enemy_left.x, &game->animation.enemy_left.y,
-		'A');
+	position(game, &game->animation.enemy_left.x, 
+		&game->animation.enemy_left.y, 'A');
 	disable(game->animation.enemy_down.image);
 	enemy_animation(game, game->animation.enemy_left.image);
 	if (game->animation.timer == 80
-		&& game->map.array[game->animation.enemy_left.y][game->animation.enemy_left.x
-			- 1] != '1'
-		&& game->map.array[game->animation.enemy_left.y][game->animation.enemy_left.x
-			- 1] != 'C')
+		&& game->map.array[game->animation.enemy_left.y]
+		[game->animation.enemy_left.x - 1] != '1'
+		&& game->map.array[game->animation.enemy_left.y]
+		[game->animation.enemy_left.x - 1] != 'C')
 	{
 		update_enemy(game, 'l', game->animation.enemy_left.y,
 			game->animation.enemy_left.x);
 		print_images(game, game->animation.enemy_left.image,
 			game->animation.enemy_left.x, game->animation.enemy_left.y);
 	}
-	else if (game->map.array[game->animation.enemy_left.y][game->animation.enemy_left.x
-			- 1] != '0'
-		&& game->map.array[game->animation.enemy_left.y][game->animation.enemy_left.x
-			- 1] != 'P')
+	else if (game->map.array[game->animation.enemy_left.y]
+		[game->animation.enemy_left.x - 1] != '0'
+		&& game->map.array[game->animation.enemy_left.y]
+		[game->animation.enemy_left.x - 1] != 'P')
 		*direction = 0;
 }
 
 void	enemy_moves(t_game *game)
 {
-	static int direction;
+	static int	direction;
 
-	position(game, &game->animation.enemy_up.x, &game->animation.enemy_up.y,
-		'A');
+	position(game, &game->animation.enemy_up.x, 
+		&game->animation.enemy_up.y, 'A');
 	if (direction == 0)
 		go_up(game, &direction);
 	else if (direction == 1)

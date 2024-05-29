@@ -6,7 +6,7 @@
 /*   By: arekoune <arekoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 19:36:54 by arekoune          #+#    #+#             */
-/*   Updated: 2024/05/28 19:48:17 by arekoune         ###   ########.fr       */
+/*   Updated: 2024/05/29 09:27:01 by arekoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,19 +85,23 @@ void	update_enemy(t_game *game, char c, int y, int x)
 	if (game->map.array[y][x] == 'P')
 		exit(0);
 	game->map.array[y][x] = 'A';
-	if (game->map.array[y - 1][x] == '1' && c == 'u')
+	if ((game->map.array[y - 1][x] != '0'
+		&& game->map.array[y - 1][x] != 'P') && c == 'u')
 		print_images(game, game->animation.enemy_right.image, x, y);
-	else if (game->map.array[y + 1][x] == '1' && c == 'd')
+	else if ((game->map.array[y + 1][x] != '0'
+		&& game->map.array[y + 1][x] != 'P') && c == 'd')
 		print_images(game, game->animation.enemy_left.image, x, y);
-	else if (game->map.array[y][x + 1] == '1' && c == 'r')
+	else if ((game->map.array[y][x + 1] != '0'
+		&& game->map.array[y][x + 1] != 'P') && c == 'r')
 		print_images(game, game->animation.enemy_down.image, x, y);
-	else if (game->map.array[y][x - 1] == '1' && c == 'l')
+	else if ((game->map.array[y][x - 1] != '0'
+		&& game->map.array[y][x - 1] != 'P') && c == 'l')
 		print_images(game, game->animation.enemy_up.image, x, y);
 }
 
 void	animation(void *param)
 {
-	t_game *game;
+	t_game	*game;
 
 	game = param;
 	coin_animation(game);

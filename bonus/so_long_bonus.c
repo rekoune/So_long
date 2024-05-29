@@ -6,7 +6,7 @@
 /*   By: arekoune <arekoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 11:09:46 by arekoune          #+#    #+#             */
-/*   Updated: 2024/05/28 19:52:50 by arekoune         ###   ########.fr       */
+/*   Updated: 2024/05/29 11:40:25 by arekoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 
 void	get_pointers(t_game *game)
 {
+	game->element.ocean.image = NULL;
+	game->element.ground.image = NULL;
+	game->element.coin.image = NULL;
+	game->element.exit.image = NULL;
 	get_player_pointers(game);
 	get_coin_pointers(game);
 	get_enemy_pointers(game);
@@ -92,25 +96,35 @@ void	my_key_hok(mlx_key_data_t data, void *param)
 
 void	free_resources(t_game *game)
 {
+	int	i;
+
+	i = 0;
 	free_objects(game->element.player, game->mlx);
 	free_objects(game->element.ocean, game->mlx);
 	free_objects(game->element.ground, game->mlx);
 	free_objects(game->element.coin, game->mlx);
 	free_objects(game->element.exit, game->mlx);
+	free_objects(game->animation.enemy_down, game->mlx);
+	free_objects(game->animation.enemy_up, game->mlx);
+	free_objects(game->animation.enemy_right, game->mlx);
+	free_objects(game->animation.enemy_left, game->mlx);
+	while (game->animation.coin && game->animation.coin[i])
+		mlx_delete_image(game->mlx, game->animation.coin[i++]);
+	free(game->animation.coin);
 }
-
+void	leaks()
+{
+	system("leaks -q so_long_bonus");
+}
 int	main(int ac, char **av)
 {
 	t_game	game;
 
+	atexit(leaks);
 	game.animation.timer = 0;
 	game.animation.timer_e = 0;
 	game.map.array = NULL;
 	game.element.player.image = NULL;
-	game.element.ocean.image = NULL;
-	game.element.ground.image = NULL;
-	game.element.coin.image = NULL;
-	game.element.exit.image = NULL;
 	game.moves = 0;
 	if (ac == 2)
 	{

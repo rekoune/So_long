@@ -6,7 +6,7 @@
 /*   By: arekoune <arekoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 11:10:18 by arekoune          #+#    #+#             */
-/*   Updated: 2024/05/28 20:15:33 by arekoune         ###   ########.fr       */
+/*   Updated: 2024/05/29 10:29:15 by arekoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,16 +53,15 @@ typedef struct s_map
 
 typedef struct s_animation
 {
-	mlx_image_t	 	**coin;
+	mlx_image_t		**coin;
 	t_object		enemy_up;
 	t_object		enemy_down;
 	t_object		enemy_right;
 	t_object		enemy_left;
 	int				timer;
 	int				timer_e;
-	
-}					t_animation;
 
+}					t_animation;
 
 typedef struct s_game
 {
@@ -127,6 +126,7 @@ void				free_objects(t_object object, mlx_t *mlx);
 void				player_image_to_window(t_game *game, mlx_image_t *img);
 void				left_pointers(t_game *game);
 void				down_pointers(t_game *game);
+void				player_direction(t_game *game, char c, int a);
 
 //animation_bonus.c
 void				print_images(t_game *game, mlx_image_t **img, int x, int y);
