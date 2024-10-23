@@ -6,14 +6,14 @@
 /*   By: arekoune <arekoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 11:10:18 by arekoune          #+#    #+#             */
-/*   Updated: 2024/05/30 16:27:31 by arekoune         ###   ########.fr       */
+/*   Updated: 2024/10/23 13:33:13 by arekoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include "/Users/arekoune/MLX42/include/MLX42/MLX42.h"
+# include "../MLX42/include/MLX42/MLX42.h"
 # include "get_next_line.h"
 # include <fcntl.h>
 # include <stdlib.h>
