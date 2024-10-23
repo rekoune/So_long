@@ -9,11 +9,13 @@ BFILES = bonus/so_long_bonus.c bonus/check_map_bonus.c bonus/check_map_utils_bon
 BOFILES = $(BFILES:.c=.o)
 OFILES = $(CFILES:.c=.o)
 
-CC = cc 
-CFLAGS = -Wall -Wextra -Werror -Wunreachable-code -Ofast
+GLFW = $(shell brew --prefix glfw)
 
-LIBMLX = ~/MLX42
-LIBS = $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
+CC = cc 
+CFLAGS = -Wall -Wextra -Werror
+
+LIBMLX = ./MLX42
+LIBS = $(LIBMLX)/build/libmlx42.a -ldl -lglfw -L$(GLFW)/lib -pthread -lm
 
 NAME = so_long 
 BNAME = so_long_bonus
@@ -43,3 +45,5 @@ fclean: clean
 	rm -rf $(NAME) $(BNAME)
 
 re: fclean all
+
+.PHONY : libmlx clean

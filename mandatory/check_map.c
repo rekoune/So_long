@@ -6,7 +6,7 @@
 /*   By: arekoune <arekoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 11:09:56 by arekoune          #+#    #+#             */
-/*   Updated: 2024/05/29 12:14:09 by arekoune         ###   ########.fr       */
+/*   Updated: 2024/05/30 16:27:48 by arekoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,7 @@ char	**check_map(char *str, t_game *game)
 	map_copy = copying_map(head);
 	flood_fill(map_copy, game->element.player.x, game->element.player.y,
 		list_size(head));
-	check_path(map_copy);
+	check_path(map_copy, map);
 	free_2d(map_copy, 'a');
 	free_list(&head, 'n');
 	return (map);

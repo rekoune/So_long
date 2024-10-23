@@ -6,7 +6,7 @@
 /*   By: arekoune <arekoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 11:09:52 by arekoune          #+#    #+#             */
-/*   Updated: 2024/05/27 09:28:56 by arekoune         ###   ########.fr       */
+/*   Updated: 2024/05/30 16:27:01 by arekoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,19 +59,22 @@ void	flood_fill(char **map, int x, int y, int size)
 	flood_fill(map, x, y + 1, size);
 }
 
-void	check_path(char **map)
+void	check_path(char **map_copy, char **map)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (map[i])
+	while (map_copy[i])
 	{
 		j = 0;
-		while (map[i][j] && j < str_len_c(map[i], '\n'))
+		while (map_copy[i][j] && j < str_len_c(map_copy[i], '\n'))
 		{
-			if (map[i][j] == 'E' || map[i][j] == 'C')
-				error("Invalid map\n", NULL, map);
+			if (map_copy[i][j] == 'E' || map_copy[i][j] == 'C')
+			{
+				free_2d(map, 'a');
+				error("Invalid map\n", NULL, map_copy);
+			}
 			j++;
 		}
 		i++;

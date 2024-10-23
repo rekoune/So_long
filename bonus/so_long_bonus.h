@@ -6,7 +6,7 @@
 /*   By: arekoune <arekoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 11:10:18 by arekoune          #+#    #+#             */
-/*   Updated: 2024/05/29 16:30:16 by arekoune         ###   ########.fr       */
+/*   Updated: 2024/05/30 17:43:12 by arekoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include <fcntl.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include <stdio.h>
 
 typedef struct s_list
 {
@@ -89,7 +88,7 @@ void				check_walls(t_list **head);
 char				**switch_to_array(t_list **head);
 char				**copying_map(t_list *head);
 void				flood_fill(char **map, int x, int y, int size);
-void				check_path(char **map);
+void				check_path(char **map_copy, char **map);
 void				position(t_game *game, int	*x, int *y, char to_find);
 
 // list_utils_bonus.c

@@ -6,7 +6,7 @@
 /*   By: arekoune <arekoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 11:09:46 by arekoune          #+#    #+#             */
-/*   Updated: 2024/05/29 12:13:26 by arekoune         ###   ########.fr       */
+/*   Updated: 2024/05/30 17:01:59 by arekoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,6 @@ int	main(int ac, char **av)
 		if (!game.mlx)
 			error("Mlx fails !\n", NULL, game.map.array);
 		draw_the_map(&game);
-		game.element.ground.image[0]->enabled = 1;
 		mlx_key_hook(game.mlx, &my_key_hok, &game);
 		mlx_loop_hook(game.mlx, &animation, &game);
 		mlx_loop(game.mlx);
